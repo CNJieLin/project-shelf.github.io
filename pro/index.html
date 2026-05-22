@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101828">
+  <title>Zemax Project Shelf Pro 购买</title>
+  <meta name="description" content="Zemax Project Shelf Pro 购买与授权激活页面。支持微信、支付宝付款，付款后联系领取授权码。">
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: rgba(255, 255, 255, 0.88);
+      --card-strong: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --subtle: #98a2b3;
+      --line: rgba(16, 24, 40, 0.10);
+      --brand: #3b82f6;
+      --brand-2: #10b981;
+      --brand-3: #7c3aed;
+      --danger: #ef4444;
+      --shadow: 0 24px 80px rgba(16, 24, 40, 0.12);
+      --shadow-soft: 0 16px 48px rgba(16, 24, 40, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(59, 130, 246, 0.20), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(16, 185, 129, 0.16), transparent 30%),
+        radial-gradient(circle at 50% 95%, rgba(124, 58, 237, 0.12), transparent 28%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, var(--brand), var(--brand-3));
+      box-shadow: 0 14px 34px rgba(59, 130, 246, 0.26);
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      padding: 9px 12px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover { background: rgba(255,255,255,0.8); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .price-card,
+    .section-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.72);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-card {
+      padding: 46px;
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -140px;
+      bottom: -160px;
+      width: 360px;
+      height: 360px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(16,185,129,.16));
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      border-radius: 999px;
+      color: #1d4ed8;
+      background: rgba(59, 130, 246, 0.08);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 22px 0 16px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+
+    .hero-desc {
+      max-width: 660px;
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.78;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 30px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      user-select: none;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 16px 34px rgba(37, 99, 235, 0.24);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.8);
+      border-color: var(--line);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.62);
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 18px;
+    }
+
+    .mini span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .price-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      min-height: 520px;
+    }
+
+    .price-box {
+      border-radius: 24px;
+      padding: 30px;
+      background: linear-gradient(135deg, #101828, #1f2937);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-box::before {
+      content: "";
+      position: absolute;
+      inset: -70px -90px auto auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: rgba(59,130,246,0.32);
+    }
+
+    .price-label {
+      color: rgba(255,255,255,0.72);
+      font-weight: 700;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .price {
+      margin: 18px 0 10px;
+      font-size: 62px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 900;
+      position: relative;
+    }
+
+    .price small {
+      font-size: 20px;
+      color: rgba(255,255,255,0.62);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .price-note {
+      color: rgba(255,255,255,0.76);
+      line-height: 1.7;
+      margin: 0;
+      position: relative;
+    }
+
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      background: rgba(255,255,255,0.72);
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .contact-id {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #f2f4f7;
+      border: 1px dashed rgba(16,24,40,0.18);
+      color: #101828;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #101828;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-card {
+      padding: 34px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    .section-subtitle {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .pay-card {
+      background: var(--card-strong);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .pay-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding: 0 2px;
+    }
+
+    .pay-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .pay-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+    }
+
+    .ali { background: #1677ff; }
+    .wechat { background: #07c160; }
+
+    .pay-badge {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f2f4f7;
+    }
+
+    .pay-img-wrap {
+      border-radius: 20px;
+      border: 1px solid rgba(16,24,40,0.08);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .pay-img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .pay-tip {
+      margin: 14px 4px 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      counter-reset: step;
+    }
+
+    .step {
+      counter-increment: step;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.68);
+      padding: 20px;
+      min-height: 172px;
+    }
+
+    .step::before {
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      background: #101828;
+      color: white;
+      font-weight: 900;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.62);
+    }
+
+    .check {
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--brand-2);
+      font-size: 14px;
+      font-weight: 900;
+      margin-top: 1px;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .feature span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .notice {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      color: #7a2e0e;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      line-height: 1.75;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.68);
+      padding: 18px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    details p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      color: white;
+      background: rgba(16,24,40,0.94);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      box-shadow: 0 16px 40px rgba(16,24,40,0.22);
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 99;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .payment-grid,
+      .steps,
+      .features,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-card,
+      .price-card { min-height: auto; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .section-head { display: block; }
+    }
+
+    @media (max-width: 640px) {
+      .page { width: min(100% - 20px, var(--max)); padding-top: 14px; }
+      .hero-card,
+      .price-card,
+      .section-card { border-radius: 22px; }
+      .hero-card { padding: 30px 22px; }
+      .price-card { padding: 18px; }
+      .section-card { padding: 24px 18px; }
+      .price { font-size: 52px; }
+      .contact-row { align-items: stretch; flex-direction: column; }
+      .copy-btn { width: 100%; }
+      .btn { width: 100%; }
+      .pay-card { padding: 12px; }
+      .pay-top { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav" aria-label="页面导航">
+      <a class="brand" href="#top" aria-label="Zemax Project Shelf Pro">
+        <span class="brand-mark">Z</span>
+        <span>Zemax Project Shelf</span>
+      </a>
+      <div class="nav-links">
+        <a href="#pay">付款</a>
+        <a href="#steps">流程</a>
+        <a href="#features">Pro 功能</a>
+        <a href="#faq">常见问题</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="top">
+      <div class="hero-card">
+        <span class="eyebrow">Zemax Project Shelf Pro · 光设项目书架增强版</span>
+        <h1>光设管理神器</h1>
+        <p class="hero-desc">
+          Pro 版面向长期从事光学设计项目的同学、工程师与团队。你可以解锁自定义采集图谱、项目级采集配置、增强版本对比等能力。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pay">立即扫码购买</a>
+          <button class="btn btn-secondary" type="button" data-copy="lhl13111191103">复制微信号</button>
+        </div>
+        <div class="mini-grid" aria-label="购买信息摘要">
+          <div class="mini">
+            <strong>¥99</strong>
+            <span>买断制。一次购买，终身可用。</span>
+          </div>
+          <div class="mini">
+            <strong>1 台设备</strong>
+            <span>默认绑定 2 台常用电脑，换机可联系处理。</span>
+          </div>
+          <div class="mini">
+            <strong>授权码激活</strong>
+            <span>付款后领取授权码，在插件设置页输入即可激活。</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="price-card" aria-label="价格与联系方式">
+        <div class="price-box">
+          <div class="price-label">当前 Pro 价格</div>
+          <div class="price">¥99<small>.00</small></div>
+          <p class="price-note">付款后请添加微信或备注联系方式，我会发送 Pro 授权码。激活时需要在插件设置页输入授权码。</p>
+        </div>
+        <div class="contact-card">
+          <strong>购买后联系微信</strong>
+          <div class="contact-row">
+            <div class="contact-id">lhl13111191103</div>
+            <button class="copy-btn" type="button" data-copy="lhl13111191103">复制</button>
+          </div>
+        </div>
+        <div class="notice">
+          付款备注建议填写：<strong>微信号 / 邮箱 / 设备码</strong>。如果忘记备注，也可以付款后直接添加微信说明。
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="pay">
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <h2>选择付款方式</h2>
+            <p class="section-subtitle">推荐使用微信或支付宝扫码支付。付款完成后联系微信领取授权码。</p>
+          </div>
+        </div>
+
+        <div class="payment-grid">
+          <article class="pay-card">
+            <div class="pay-top">
+              <div class="pay-title"><span class="pay-icon ali">支</span>支付宝支付</div>
+              <span class="pay-badge">¥99 · Pro</span>
+            </div>
+            <div class="pay-img-wrap">
+              <img class="pay-img" src="assets/alipay-pro-99.jpg" alt="支付宝付款码，金额 99 元，Zemax Project Shelf Pro">
+            </div>
+            <p class="pay-tip">支付宝支付后，请添加微信 <strong>lhl13111191103</strong> 或在付款备注中留下联系方式。</p>
+          </article>
+
+          <article class="pay-card">
+            <div class="pay-top">
+              <div class="pay-title"><span class="pay-icon wechat">微</span>微信支付</div>
+              <span class="pay-badge">¥99 · Pro</span>
+            </div>
+            <div class="pay-img-wrap">
+              <img class="pay-img" src="assets/wechat-pro-99.png" alt="微信付款码，金额 99 元，Zemax Project Shelf Pro">
+            </div>
+            <p class="pay-tip">微信支付后，可直接通过微信联系领取授权码。建议发送“ZPS Pro + 设备码”。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="steps">
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <h2>购买与激活流程</h2>
+            <p class="section-subtitle">整个流程分为付款、联系、发码、插件激活四步。</p>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <strong>扫码付款</strong>
+            <span>选择上方支付宝或微信付款码，支付 99 元购买 Pro 授权。</span>
+          </div>
+          <div class="step">
+            <strong>添加微信</strong>
+            <span>添加微信 lhl13111191103，发送付款截图或付款说明。</span>
+          </div>
+          <div class="step">
+            <strong>领取授权码</strong>
+            <span>添加好友后发送付款截图，我会发送给你授权码。</span>
+          </div>
+          <div class="step">
+            <strong>插件内激活</strong>
+            <span>打开插件设置页，点击“输入授权码”，完成 Pro 激活。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <h2>Pro 解锁内容</h2>
+            <p class="section-subtitle">免费版保留基础项目管理能力，Pro 版用于更完整的光学设计工作流。</p>
+          </div>
+        </div>
+        <div class="features">
+          <div class="feature"><span class="check">✓</span><div><strong>自定义采集图谱</strong><span>按项目配置需要导出的图表与分析结果。</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>中文采集预设</strong><span>更贴近中文 Zemax / OpticStudio 工作习惯。</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>项目级采集配置</strong><span>每个项目保存自己的采集方案与默认设置。</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>增强版本对比</strong><span>从默认相邻对比扩展到更灵活的版本选择。</span></div></div>
+          
+          
+          
+          <div class="feature"><span class="check">✓</span><div><strong>后续 Pro 更新</strong><span>当前 Pro 能力会随着插件继续迭代完善。</span></div></div>
+          <div class="feature"><span class="check">✓</span><div><strong>优先反馈通道</strong><span>遇到授权或使用问题可通过微信联系处理。</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <h2>常见问题</h2>
+            <p class="section-subtitle">购买前可以先看这些说明。</p>
+          </div>
+        </div>
+        <div class="faq-grid">
+          <details open="">
+            <summary>付款后多久能收到授权码？</summary>
+            <p>人工确认后发送。一般看到消息后会尽快处理；如果没有及时回复，请直接添加微信说明付款时间和付款方式。</p>
+          </details>
+          <details open="">
+            <summary>授权码绑定几台设备？</summary>
+            <p>当前默认绑定 2 台常用电脑。后续如需换电脑，可以联系处理设备解绑或迁移。</p>
+          </details>
+          <details open="">
+            <summary>付款备注写什么？</summary>
+            <p>建议写微信号、邮箱或设备码。没有备注也没关系，付款后通过微信说明即可。</p>
+          </details>
+          <details open="">
+            <summary>如何在插件里激活？</summary>
+            <p>打开 Obsidian 的 Zemax Project Shelf 设置页，找到 Pro 授权区域，点击“输入授权码”，粘贴授权码并激活。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>Zemax Project Shelf Pro · 购买与授权页面</div>
+      <div>本页面仅用于付款说明与联系购买，不收集银行卡、密码等敏感支付信息。</div>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">已复制</div>
+
+  <script>
+    const toast = document.getElementById('toast');
+    let timer = null;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(timer);
+      timer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('已复制微信号：' + text);
+      } catch (error) {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        input.remove();
+        showToast('已复制微信号：' + text);
+      }
+    }
+
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', () => copyText(button.dataset.copy));
+    });
+  </script>
+
+
+</body></html>
