@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <script>
+      window.onerror = function(msg, url, lineNo, columnNo, error) {
+        alert('JS Error: ' + msg + '\nLine: ' + lineNo);
+        return false;
+      };
+    </script>
+    <meta charset="UTF-8" />
+    <!-- 强制声明 Unicode 编码，防乱码 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>光学实验设备布局工具</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--surface);
+        color: var(--text-primary);
+        padding: 16px 24px;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        border-left: 4px solid var(--accent-primary);
+        transform: translateY(150%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        font-weight: 500;
+      }
+      .toast.show {
+        transform: translateY(0);
+      }
+
+      /* 3D 悬浮标签样式 */
+      .device-label {
+        color: #ffffff;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 4px 8px;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        pointer-events: none; /* 防止阻挡射线检测 */
+        user-select: none;
+        backdrop-filter: blur(4px);
+        margin-top: -10px; /* 稍微向上偏移 */
+        white-space: nowrap;
+        transition: opacity 0.2s;
+      }
+    </style>
+    <!-- 引入 Three.js 及其扩展 -->
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+          "three/addons/renderers/CSS2DRenderer.js": "https://unpkg.com/three@0.160.0/examples/jsm/renderers/CSS2DRenderer.js"
+        }
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/index-BKFSjbvQ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CnOQ7xKF.css">
+  </head>
+  <body>
+    <div id="app" class="app-container">
+      
+      <!-- 左侧：组件库侧边栏 -->
+      <aside class="sidebar glass-panel" id="sidebar">
+        <h2 class="panel-title">设备与材料库</h2>
+        <div class="sidebar-section">
+          <h3>材料</h3>
+          <div class="equipment-list" id="list-materials"></div>
+        </div>
+        <div class="sidebar-section">
+          <h3>图像采集设备</h3>
+          <div class="equipment-list" id="list-cameras"></div>
+        </div>
+        <div class="sidebar-section">
+          <h3>光源设备</h3>
+          <div class="equipment-list" id="list-lights"></div>
+        </div>
+        <div class="sidebar-section">
+          <h3>常见道具</h3>
+          <div class="equipment-list" id="list-props"></div>
+        </div>
+      </aside>
+
+      <!-- 中间：画布工作区 -->
+      <main class="workspace" id="workspace">
+        <div class="canvas-header">
+          <h2>3D 实验室 <span class="subtitle">(硬刷新 Ctrl+F5 获取最新代码)</span></h2>
+          <div class="canvas-controls">
+            <button id="btn-mode-move" class="btn" style="border-color: var(--accent-primary);">移动模式</button>
+            <button id="btn-mode-rotate" class="btn">旋转模式</button>
+            <button id="btn-export" class="btn">导出存档</button>
+            <button id="btn-import" class="btn">导入存档</button>
+            <input type="file" id="file-import" accept=".json" style="display:none;" />
+            <button id="btn-clear-canvas" class="btn btn-danger">清空</button>
+          </div>
+        </div>
+        <div class="canvas-container" id="canvas-container">
+          <!-- WebGL Canvas 将注入于此 -->
+        </div>
+      </main>
+
+      <!-- 右侧：属性控制面板 -->
+      <aside class="properties-panel glass-panel" id="properties-panel">
+        <h2 class="panel-title">属性设置</h2>
+        <div id="no-selection-msg" class="empty-msg">请在工作台选择一个设备</div>
+        <div id="property-form" class="property-form hidden">
+          <!-- 动态属性表单 -->
+        </div>
+      </aside>
+
+    </div>
+    <!-- 业务入口：保持精简 -->
+  </body>
+</html>
